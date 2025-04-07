@@ -12,7 +12,7 @@ public:
     
     virtual ~Piece() = default;
     
-    // Get possible moves for this piece
+
     virtual std::vector<Position> getPossibleMoves(const std::array<std::array<std::shared_ptr<Piece>, 8>, 8>& board) const = 0;
     
     // Getters
@@ -25,7 +25,7 @@ public:
     void setPosition(Position pos) { m_position = pos; m_hasMoved = true; }
     void setMoved(bool moved) { m_hasMoved = moved; }
     
-    // Get piece representation letter
+
     char getRepresentation() const;
 
 protected:
@@ -34,12 +34,12 @@ protected:
     Position m_position;
     bool m_hasMoved;
     
-    // Helper methods for move generation
+
     std::vector<Position> getStraightMoves(const std::array<std::array<std::shared_ptr<Piece>, 8>, 8>& board) const;
     std::vector<Position> getDiagonalMoves(const std::array<std::array<std::shared_ptr<Piece>, 8>, 8>& board) const;
 };
 
-// Pawn class
+
 class Pawn : public Piece {
 public:
     Pawn(PieceColor color, Position position)
@@ -57,7 +57,7 @@ public:
     std::vector<Position> getPossibleMoves(const std::array<std::array<std::shared_ptr<Piece>, 8>, 8>& board) const override;
 };
 
-// Knight class
+
 class Knight : public Piece {
 public:
     Knight(PieceColor color, Position position)
@@ -66,7 +66,7 @@ public:
     std::vector<Position> getPossibleMoves(const std::array<std::array<std::shared_ptr<Piece>, 8>, 8>& board) const override;
 };
 
-// Bishop class
+
 class Bishop : public Piece {
 public:
     Bishop(PieceColor color, Position position)
@@ -75,7 +75,7 @@ public:
     std::vector<Position> getPossibleMoves(const std::array<std::array<std::shared_ptr<Piece>, 8>, 8>& board) const override;
 };
 
-// Queen class
+
 class Queen : public Piece {
 public:
     Queen(PieceColor color, Position position)
@@ -84,7 +84,7 @@ public:
     std::vector<Position> getPossibleMoves(const std::array<std::array<std::shared_ptr<Piece>, 8>, 8>& board) const override;
 };
 
-// King class
+
 class King : public Piece {
 public:
     King(PieceColor color, Position position)
