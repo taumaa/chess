@@ -6,6 +6,7 @@
 #include "lois/bernoulli.hpp"
 #include "lois/binomial.hpp"
 #include "lois/poisson.hpp"
+#include "lois/normale.hpp"
 
 Chess::Chess()
     : m_selectedPiece(false, Position{0, 0}),
@@ -69,6 +70,8 @@ void Chess::initBoard() {
 
     usernamePlayer1 = generateUsername();
     usernamePlayer2 = generateUsername();
+
+    m_chessboardColors = normaleChessboardColors(0.05f);
 
     std::cout << "Username Player 1: " << usernamePlayer1 << std::endl;
     std::cout << "Username Player 2: " << usernamePlayer2 << std::endl;
@@ -198,9 +201,9 @@ void Chess::draw() {
             bool isDarkSquare = (x + y) % 2 != 0;
             
             if (isDarkSquare) {
-                squareColor = ImVec4(0.5f, 0.3f, 0.0f, 1.0f); // Dark brown
+                squareColor = m_chessboardColors.second;
             } else {
-                squareColor = ImVec4(0.9f, 0.8f, 0.6f, 1.0f); // Light brown
+                squareColor = m_chessboardColors.first;
             }
             
 

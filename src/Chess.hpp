@@ -5,6 +5,7 @@
 #include <memory>
 #include <string>
 #include <utility>
+#include "imgui.h"
 
 
 class Piece;
@@ -125,4 +126,6 @@ private:
 
     std::string usernamePlayer1;
     std::string usernamePlayer2;
+
+    std::pair<ImVec4, ImVec4> m_chessboardColors;
 }; 
