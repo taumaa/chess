@@ -71,7 +71,7 @@ void Chess::initBoard() {
     usernamePlayer1 = generateUsername();
     usernamePlayer2 = generateUsername();
 
-    m_chessboardColors = normaleChessboardColors(0.05f);
+    m_chessboardColors = normaleChessboardColors(0.01f);
 
     std::cout << "Username Player 1: " << usernamePlayer1 << std::endl;
     std::cout << "Username Player 2: " << usernamePlayer2 << std::endl;
