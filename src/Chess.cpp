@@ -604,22 +604,22 @@ void Chess::load_pieces_3D()
             if (m_board[y][x]) {
                 switch (m_board[y][x]->getType()) {
                     case PieceType::Pawn:
-                        dynamic_cast<Pawn*>(m_board[y][x].get())->loadModel();
+                        dynamic_cast<Pawn*>(m_board[y][x].get())->load_3D_model();
                         break;
                     case PieceType::Rook:
-                        dynamic_cast<Rook*>(m_board[y][x].get())->loadModel();
+                        dynamic_cast<Rook*>(m_board[y][x].get())->load_3D_model();
                         break;
                     case PieceType::Knight:
-                        dynamic_cast<Knight*>(m_board[y][x].get())->loadModel();
+                        dynamic_cast<Knight*>(m_board[y][x].get())->load_3D_model();
                         break;
                     case PieceType::Bishop:
-                        dynamic_cast<Bishop*>(m_board[y][x].get())->loadModel();
+                        dynamic_cast<Bishop*>(m_board[y][x].get())->load_3D_model();
                         break;
                     case PieceType::Queen:
-                        dynamic_cast<Queen*>(m_board[y][x].get())->loadModel();
+                        dynamic_cast<Queen*>(m_board[y][x].get())->load_3D_model();
                         break;
                     case PieceType::King:
-                        dynamic_cast<King*>(m_board[y][x].get())->loadModel();
+                        dynamic_cast<King*>(m_board[y][x].get())->load_3D_model();
                         break;
                 }
             }

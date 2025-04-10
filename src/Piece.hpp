@@ -53,10 +53,7 @@ public:
     
     std::vector<Position> getPossibleMoves(const std::array<std::array<std::shared_ptr<Piece>, 8>, 8>& board) const override;
 
-    void loadModel() {
-        m_model.load_mesh(_path, _name);
-        m_model.setup_buffers();
-    }
+    void load_3D_model();
 
 private:
     std::string _path = "pawn/pawn.obj";
@@ -72,10 +69,7 @@ public:
     
     std::vector<Position> getPossibleMoves(const std::array<std::array<std::shared_ptr<Piece>, 8>, 8>& board) const override;
 
-    void loadModel() {
-        m_model.load_mesh(_path, _name);
-        m_model.setup_buffers();
-    }
+    void load_3D_model();
 
 private:
     std::string _path = "rook/rook.obj";
@@ -91,10 +85,7 @@ public:
     
     std::vector<Position> getPossibleMoves(const std::array<std::array<std::shared_ptr<Piece>, 8>, 8>& board) const override;
 
-    void loadModel() {
-        m_model.load_mesh(_path, _name);
-        m_model.setup_buffers();
-    }
+    void load_3D_model();
 
 private:
     std::string _path = "knight/knight.obj";
@@ -110,10 +101,7 @@ public:
     
     std::vector<Position> getPossibleMoves(const std::array<std::array<std::shared_ptr<Piece>, 8>, 8>& board) const override;
 
-    void loadModel() {
-        m_model.load_mesh(_path, _name);
-        m_model.setup_buffers();
-    }
+    void load_3D_model();
 
 private:
     std::string _path = "bishop/bishop.obj";
@@ -129,10 +117,7 @@ public:
     
     std::vector<Position> getPossibleMoves(const std::array<std::array<std::shared_ptr<Piece>, 8>, 8>& board) const override;
 
-    void loadModel() {
-        m_model.load_mesh(_path, _name);
-        m_model.setup_buffers();
-    }
+    void load_3D_model();
 
 private:
     std::string _path = "queen/queen.obj";
@@ -146,10 +131,7 @@ public:
     King(PieceColor color, Position position)
         : Piece(PieceType::King, color, position) {}
     
-    void loadModel() {
-        m_model.load_mesh(_path, _name);
-        m_model.setup_buffers();
-    }
+    void load_3D_model();
 
     std::vector<Position> getPossibleMoves(const std::array<std::array<std::shared_ptr<Piece>, 8>, 8>& board) const override;
 

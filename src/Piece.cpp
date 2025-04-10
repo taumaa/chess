@@ -213,3 +213,39 @@ std::vector<Position> King::getPossibleMoves(const std::array<std::array<std::sh
 void Piece::render(glmax::Shader& shader) {
     m_model.render(shader);
 }
+
+void Pawn::load_3D_model() {
+    m_model.load_mesh(_path, _name);
+    m_model.setup_buffers();
+}
+
+
+void Rook::load_3D_model() {
+    m_model.load_mesh(_path, _name);
+    m_model.setup_buffers();
+}
+
+
+void Knight::load_3D_model() {
+    m_model.load_mesh(_path, _name);
+    m_model.setup_buffers();
+}
+
+
+void Bishop::load_3D_model() {
+    m_model.load_mesh(_path, _name);
+    m_model.setup_buffers();
+}
+
+
+void Queen::load_3D_model() {
+    m_model.load_mesh(_path, _name);
+    m_model.setup_buffers();
+}
+
+void King::load_3D_model() {
+    m_model.load_mesh(_path, _name);
+    m_model.setup_buffers();
+}
+
+
