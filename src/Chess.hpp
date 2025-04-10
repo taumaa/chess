@@ -77,7 +77,7 @@ public:
     // Draw menu bar
     void drawMenuBar();
 
-    void draw_board_3D();
+    void load_board_3D();
     void render(glmax::Shader& shader);
     void load_pieces_3D();
 

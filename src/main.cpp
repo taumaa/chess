@@ -29,7 +29,7 @@ int main()
                 
                 shader.load_shader("model.vs.glsl", "model.fs.glsl");
 
-                chess.draw_board_3D();
+                chess.load_board_3D();
                 chess.load_pieces_3D();
 
             },

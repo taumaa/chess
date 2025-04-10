@@ -589,7 +589,7 @@ std::string Chess::generateUsername() {
 }
 
 
-void Chess::draw_board_3D()
+void Chess::load_board_3D()
 {
     _board3D.load_mesh(_path, _name);
     _board3D.setup_buffers();
