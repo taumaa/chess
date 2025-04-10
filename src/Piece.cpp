@@ -209,3 +209,7 @@ std::vector<Position> King::getPossibleMoves(const std::array<std::array<std::sh
     
     return moves;
 } 
+
+void Piece::render(glmax::Shader& shader) {
+    m_model.render(shader);
+}

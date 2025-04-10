@@ -3,8 +3,10 @@
 #include "Chess.hpp"
 #include <vector>
 #include <string>
+#include "Model3D.hpp"
+#include <iostream>
 
-// Base class for all chess pieces
+
 class Piece {
 public:
     Piece(PieceType type, PieceColor color, Position position)
@@ -28,11 +30,15 @@ public:
 
     char getRepresentation() const;
 
+    void render(glmax::Shader& shader);
+
 protected:
     PieceType m_type;
     PieceColor m_color;
     Position m_position;
     bool m_hasMoved;
+
+    Model3D m_model;
     
 
     std::vector<Position> getStraightMoves(const std::array<std::array<std::shared_ptr<Piece>, 8>, 8>& board) const;
@@ -46,6 +52,16 @@ public:
         : Piece(PieceType::Pawn, color, position) {}
     
     std::vector<Position> getPossibleMoves(const std::array<std::array<std::shared_ptr<Piece>, 8>, 8>& board) const override;
+
+    void loadModel() {
+        m_model.load_mesh(_path, _name);
+        m_model.setup_buffers();
+    }
+
+private:
+    std::string _path = "pawn/pawn.obj";
+    std::string _name = "pawn";
+
 };
 
 // Rook class
@@ -55,6 +71,16 @@ public:
         : Piece(PieceType::Rook, color, position) {}
     
     std::vector<Position> getPossibleMoves(const std::array<std::array<std::shared_ptr<Piece>, 8>, 8>& board) const override;
+
+    void loadModel() {
+        m_model.load_mesh(_path, _name);
+        m_model.setup_buffers();
+    }
+
+private:
+    std::string _path = "rook/rook.obj";
+    std::string _name = "rook";
+
 };
 
 
@@ -64,6 +90,16 @@ public:
         : Piece(PieceType::Knight, color, position) {}
     
     std::vector<Position> getPossibleMoves(const std::array<std::array<std::shared_ptr<Piece>, 8>, 8>& board) const override;
+
+    void loadModel() {
+        m_model.load_mesh(_path, _name);
+        m_model.setup_buffers();
+    }
+
+private:
+    std::string _path = "knight/knight.obj";
+    std::string _name = "knight";
+
 };
 
 
@@ -73,6 +109,16 @@ public:
         : Piece(PieceType::Bishop, color, position) {}
     
     std::vector<Position> getPossibleMoves(const std::array<std::array<std::shared_ptr<Piece>, 8>, 8>& board) const override;
+
+    void loadModel() {
+        m_model.load_mesh(_path, _name);
+        m_model.setup_buffers();
+    }
+
+private:
+    std::string _path = "bishop/bishop.obj";
+    std::string _name = "bishop";
+
 };
 
 
@@ -82,6 +128,16 @@ public:
         : Piece(PieceType::Queen, color, position) {}
     
     std::vector<Position> getPossibleMoves(const std::array<std::array<std::shared_ptr<Piece>, 8>, 8>& board) const override;
+
+    void loadModel() {
+        m_model.load_mesh(_path, _name);
+        m_model.setup_buffers();
+    }
+
+private:
+    std::string _path = "queen/queen.obj";
+    std::string _name = "queen";
+
 };
 
 
@@ -90,5 +146,15 @@ public:
     King(PieceColor color, Position position)
         : Piece(PieceType::King, color, position) {}
     
+    void loadModel() {
+        m_model.load_mesh(_path, _name);
+        m_model.setup_buffers();
+    }
+
     std::vector<Position> getPossibleMoves(const std::array<std::array<std::shared_ptr<Piece>, 8>, 8>& board) const override;
+
+private:
+    std::string _path = "king/king.obj";
+    std::string _name = "king";
+
 }; 

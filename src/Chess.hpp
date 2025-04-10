@@ -6,7 +6,7 @@
 #include <string>
 #include <utility>
 #include "imgui.h"
-
+#include "Model3D.hpp"
 
 class Piece;
 
@@ -77,6 +77,10 @@ public:
     // Draw menu bar
     void drawMenuBar();
 
+    void draw_board_3D();
+    void render(glmax::Shader& shader);
+    void load_pieces_3D();
+
 
 
 private:
@@ -128,4 +132,11 @@ private:
     std::string usernamePlayer2;
 
     std::pair<ImVec4, ImVec4> m_chessboardColors;
+
+    Model3D _board3D;
+
+    std::string _path = "board/board.obj";
+    std::string _name = "board";
 }; 
+
+

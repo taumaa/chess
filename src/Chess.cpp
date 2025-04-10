@@ -8,6 +8,8 @@
 #include "lois/poisson.hpp"
 #include "lois/normale.hpp"
 
+#include <glm/gtc/matrix_transform.hpp>
+
 Chess::Chess()
     : m_selectedPiece(false, Position{0, 0}),
       m_currentTurn(PieceColor::White),
@@ -584,4 +586,87 @@ std::string Chess::generateUsername() {
     nickname = poissonSpecialCharacters(1.5, nickname);
     
     return nickname;
+}
+
+
+void Chess::draw_board_3D()
+{
+    _board3D.load_mesh(_path, _name);
+    _board3D.setup_buffers();
+}
+
+void Chess::load_pieces_3D()
+{
+    // Iterate over all pieces on the board and load their 3D models
+    
+    for (int y = 0; y < BOARD_SIZE; ++y) {
+        for (int x = 0; x < BOARD_SIZE; ++x) {
+            if (m_board[y][x]) {
+                switch (m_board[y][x]->getType()) {
+                    case PieceType::Pawn:
+                        dynamic_cast<Pawn*>(m_board[y][x].get())->loadModel();
+                        break;
+                    case PieceType::Rook:
+                        dynamic_cast<Rook*>(m_board[y][x].get())->loadModel();
+                        break;
+                    case PieceType::Knight:
+                        dynamic_cast<Knight*>(m_board[y][x].get())->loadModel();
+                        break;
+                    case PieceType::Bishop:
+                        dynamic_cast<Bishop*>(m_board[y][x].get())->loadModel();
+                        break;
+                    case PieceType::Queen:
+                        dynamic_cast<Queen*>(m_board[y][x].get())->loadModel();
+                        break;
+                    case PieceType::King:
+                        dynamic_cast<King*>(m_board[y][x].get())->loadModel();
+                        break;
+                }
+            }
+        }
+    }
+    
+    std::cout << "Loading pieces 3D" << std::endl;
+}
+
+void Chess::render(glmax::Shader& shader)
+{
+    // Render the board
+    _board3D.render(shader);
+    
+    // Render the pieces
+    for (int y = 0; y < BOARD_SIZE; ++y) {
+        for (int x = 0; x < BOARD_SIZE; ++x) {
+            // Calculer la transformation pour cette position sur l'échiquier
+            glm::mat4 pieceModel = glm::mat4(1.0f);
+            
+            // Convertir les coordonnées de la grille en positions 3D
+            // On considère que l'échiquier est centré à (0,0,0) avec une taille de 8x8
+            float posX = x - 3.5f;  // Centre la pièce sur sa case (-3.5 à 3.5)
+            float posZ = y - 3.5f;  // Centre la pièce sur sa case (-3.5 à 3.5)
+            
+            // Appliquer la translation pour positionner sur l'échiquier
+            pieceModel = glm::translate(pieceModel, glm::vec3(posX, 0.25f, posZ));
+            
+            // Si on a une pièce à cette position, appliquer les transformations supplémentaires et la rendre
+            if (m_board[y][x]) {
+                // Différencier les couleurs par rotation si nécessaire
+                if (m_board[y][x]->getColor() == PieceColor::Black) {
+                    // Rotation de 180 degrés pour les pièces noires
+                    pieceModel = glm::rotate(pieceModel, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+                }
+                
+                // Appliquer l'échelle pour ajuster la taille des pièces
+                float scale = 0.25f;
+                pieceModel = glm::scale(pieceModel, glm::vec3(scale, scale, scale));
+                
+                // Définir la matrice de modèle pour cette pièce
+                shader.set_uniform_matrix_4fv("model", pieceModel);
+                
+                // Rendre la pièce
+                m_board[y][x]->render(shader);
+            }
+        }
+    }
+    
 }
