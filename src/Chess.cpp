@@ -17,8 +17,7 @@ Chess::Chess()
       m_exitGame(false),
       m_fullscreen(false),
       m_showPromotionModal(false),
-      m_promotionPosition({0, 0}),
-      m_showAboutDialog(false) {
+      m_promotionPosition({0, 0}) {
     initBoard();
 }
 
@@ -101,50 +100,8 @@ void Chess::drawMenuBar() {
             ImGui::EndMenu();
         }
         
-        if (ImGui::BeginMenu("Help")) {
-            if (ImGui::MenuItem("About")) {
-                m_showAboutDialog = true;
-            }
-            ImGui::EndMenu();
-        }
-        
         ImGui::EndMainMenuBar();
     }
-    
-    // Draw About dialog if open
-    if (m_showAboutDialog) {
-        drawAboutDialog();
-    }
-}
-
-void Chess::drawAboutDialog() {
-    ImGui::SetNextWindowPos(ImGui::GetMainViewport()->GetCenter(), ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
-    ImGui::SetNextWindowSize(ImVec2(400, 300), ImGuiCond_Appearing);
-    
-    if (ImGui::Begin("About Chess", &m_showAboutDialog, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse)) {
-        ImGui::Text("Chess Game");
-        ImGui::Separator();
-        ImGui::Text("A 2D chess game implemented with ImGui");
-        ImGui::Spacing();
-        ImGui::Text("Features:");
-        ImGui::BulletText("Standard chess pieces and movements");
-        ImGui::BulletText("Two player gameplay");
-        ImGui::BulletText("Pawn promotion");
-        ImGui::BulletText("En passant");
-        ImGui::Spacing();
-        ImGui::Text("Controls:");
-        ImGui::BulletText("Left click to select and move pieces");
-        ImGui::BulletText("Right click to deselect a piece");
-        ImGui::Spacing();
-        
-        ImGui::SetCursorPosY(ImGui::GetWindowHeight() - 40);
-        ImGui::Separator();
-        ImGui::SetCursorPosX(ImGui::GetWindowWidth() - 120);
-        if (ImGui::Button("Close", ImVec2(100, 30))) {
-            m_showAboutDialog = false;
-        }
-    }
-    ImGui::End();
 }
 
 void Chess::draw() {

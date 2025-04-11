@@ -108,9 +108,6 @@ private:
     Position m_promotionPosition;
     
 
-    bool m_showAboutDialog;
-    
-
     void switchTurn();
     void checkForPromotion(const Position& pos);
     void promotePawn(const Position& pos, PieceType type);
@@ -122,9 +119,6 @@ private:
     
 
     void drawPromotionModal();
-    
-
-    void drawAboutDialog();
 
     std::string generateUsername();
 
